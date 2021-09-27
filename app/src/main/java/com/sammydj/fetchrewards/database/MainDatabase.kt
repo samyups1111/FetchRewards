@@ -17,7 +17,7 @@ abstract class MainDatabase: RoomDatabase() {
 
         fun getDatabase(context: Context): MainDatabase {
 
-            return INSTANCE ?: synchronized(this) {
+            return INSTANCE ?: synchronized(this) { // Creating a Singleton for the 1 database.
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MainDatabase::class.java,

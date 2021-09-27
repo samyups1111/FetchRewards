@@ -9,6 +9,12 @@ import com.sammydj.fetchrewards.model.asDomainModel
 import com.sammydj.fetchrewards.network.FetchRewardsService
 import retrofit2.Response
 
+/** Using the Repository to follow single source of truth. Data is retrieved from the network
+ * then cached into the local database. All data used for the app is then taken from one source,
+ * the local database. Added benefit is that the ViewModel has less responsibilities. This
+ * follows the single-responsibility principle.
+ */
+
 class MainRepository(private val service: FetchRewardsService, private val mainDao: MainDao) {
 
     fun getItemsFromDatabase() = Transformations.map(mainDao.getItemsFromDB()) {it.asDomainModel()}

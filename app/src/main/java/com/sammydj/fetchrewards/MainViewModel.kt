@@ -8,10 +8,10 @@ import kotlinx.coroutines.launch
 class MainViewModel(private val repository: MainRepository): ViewModel() {
 
     init {
-        viewModelScope.launch { repository.getItemsFromNetwork() }
+        viewModelScope.launch { repository.getItemsFromNetwork() } // Using Coroutine for Async
     }
 
-    val itemsInDatabase = repository.getItemsFromDatabase()
+    val itemsInDatabase = repository.getItemsFromDatabase() // Don't need Coroutine for LiveData
 
     override fun onCleared() {
         super.onCleared()

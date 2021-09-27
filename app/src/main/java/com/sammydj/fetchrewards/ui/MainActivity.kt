@@ -2,7 +2,6 @@ package com.sammydj.fetchrewards.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainRecyclerView : RecyclerView
     private lateinit var mainRecyclerViewAdapter : MainRecyclerViewAdapter
-
     private val viewModel : MainViewModel by lazy {
         ViewModelProvider(this,
             MainViewModel.MainViewModelFactory((application as MainApplication).mainRepository)
@@ -40,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Observing LiveData. More useful if the UI interacts with the data (i.e. through a button)
     private fun loadData() {
         viewModel.itemsInDatabase.observe(this, Observer { itemList ->
             mainRecyclerViewAdapter.updateList(itemList)
-            itemList.forEach { Log.d("TAG", "${it.name}") }
         })
     }
 }

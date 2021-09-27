@@ -6,6 +6,8 @@ data class ItemRemote(
     val name: String?
 )
 
+// Separating the domain/database/network models. This can prevent errors.
+
 fun List<ItemRemote>.asDatabaseModel(): List<ItemLocal> {
     return map {
         ItemLocal(

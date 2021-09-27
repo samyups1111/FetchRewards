@@ -16,6 +16,8 @@ class MainApplication: Application() {
         appContext = applicationContext
     }
 
+    // Using "by lazy" so that the variables are only instantiated when needed.
+
     private val retrofit by lazy { Retrofit() }
     private val database by lazy { MainDatabase.getDatabase(this) }
     val mainRepository by lazy { MainRepository(retrofit.fetchRewardsService, database.mainDao) }
